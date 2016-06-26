@@ -1,13 +1,13 @@
 package net.pl3x.bukkit.chatapi.api;
 
+import net.pl3x.bukkit.chatapi.ChatColor;
+
 import java.beans.ConstructorProperties;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import net.pl3x.bukkit.chatapi.ChatColor;
 
-@SuppressWarnings("WeakerAccess")
 public class TextComponent
         extends BaseComponent {
     public void setText(String text) {
@@ -22,7 +22,6 @@ public class TextComponent
     private static final Pattern url = Pattern.compile("^(?:(https?)://)?([-\\w_\\.]{2,}\\.[a-z]{2,4})(/\\S*)?$");
     private String text;
 
-    @SuppressWarnings("unused")
     public static BaseComponent[] fromLegacyText(String message) {
         ArrayList<BaseComponent> components = new ArrayList<>();
         StringBuilder builder = new StringBuilder();

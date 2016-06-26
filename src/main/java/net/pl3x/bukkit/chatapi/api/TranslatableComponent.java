@@ -1,5 +1,7 @@
 package net.pl3x.bukkit.chatapi.api;
 
+import net.pl3x.bukkit.chatapi.ChatColor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.MissingResourceException;
@@ -7,9 +9,7 @@ import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-import net.pl3x.bukkit.chatapi.ChatColor;
 
-@SuppressWarnings("WeakerAccess")
 public class TranslatableComponent extends BaseComponent {
     private final ResourceBundle locales = ResourceBundle.getBundle("mojang-translations/en_US");
     private final Pattern format = Pattern.compile("%(?:(\\d+)\\$)?([A-Za-z%]|$)");
@@ -52,7 +52,6 @@ public class TranslatableComponent extends BaseComponent {
         }
     }
 
-    @SuppressWarnings("unused")
     public TranslatableComponent(String translate, Object... with) {
         setTranslate(translate);
         List<BaseComponent> temp = new ArrayList<>();
@@ -77,7 +76,6 @@ public class TranslatableComponent extends BaseComponent {
         with = components;
     }
 
-    @SuppressWarnings("unused")
     public void addWith(String text) {
         addWith(new TextComponent(text));
     }

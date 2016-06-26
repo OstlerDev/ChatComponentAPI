@@ -7,12 +7,12 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import com.google.gson.JsonSerializationContext;
 import com.google.gson.JsonSerializer;
-import java.lang.reflect.Type;
-import java.util.List;
 import net.pl3x.bukkit.chatapi.api.BaseComponent;
 import net.pl3x.bukkit.chatapi.api.TextComponent;
 
-@SuppressWarnings("WeakerAccess")
+import java.lang.reflect.Type;
+import java.util.List;
+
 public class TextComponentSerializer extends BaseComponentSerializer implements JsonSerializer<TextComponent>, JsonDeserializer<TextComponent> {
 
     @Override

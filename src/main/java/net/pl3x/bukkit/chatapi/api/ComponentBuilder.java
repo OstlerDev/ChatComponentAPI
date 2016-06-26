@@ -1,11 +1,11 @@
 package net.pl3x.bukkit.chatapi.api;
 
+import net.pl3x.bukkit.chatapi.ChatColor;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-import net.pl3x.bukkit.chatapi.ChatColor;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
 public class ComponentBuilder {
     private TextComponent current;
     private final List<BaseComponent> parts = new ArrayList<>();

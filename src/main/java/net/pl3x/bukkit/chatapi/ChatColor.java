@@ -151,7 +151,6 @@ public enum ChatColor {
      * @param input String to strip of color
      * @return A copy of the input string, without any coloring
      */
-    @SuppressWarnings("unused")
     public static String stripColor(final String input) {
         if (input == null) {
             return null;
@@ -160,7 +159,16 @@ public enum ChatColor {
         return STRIP_COLOR_PATTERN.matcher(input).replaceAll("");
     }
 
-    @SuppressWarnings("unused")
+    /**
+     * Translates a string using an alternate color code character into a
+     * string that uses the internal ChatColor.COLOR_CODE color code
+     * character. The alternate color code character will only be replaced if
+     * it is immediately followed by 0-9, A-F, a-f, K-O, k-o, R or r.
+     *
+     * @param altColorChar    The alternate color code character to replace. Ex: {@literal &}
+     * @param textToTranslate Text containing the alternate color code character.
+     * @return Text containing the ChatColor.COLOR_CODE color code character.
+     */
     public static String translateAlternateColorCodes(char altColorChar, String textToTranslate) {
         char[] b = textToTranslate.toCharArray();
         for (int i = 0; i < b.length - 1; i++) {

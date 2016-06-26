@@ -1,10 +1,10 @@
 package net.pl3x.bukkit.chatapi.api;
 
-import java.util.ArrayList;
-import java.util.List;
 import net.pl3x.bukkit.chatapi.ChatColor;
 
-@SuppressWarnings("WeakerAccess")
+import java.util.ArrayList;
+import java.util.List;
+
 public abstract class BaseComponent {
     BaseComponent parent;
     private ChatColor color;
@@ -91,7 +91,6 @@ public abstract class BaseComponent {
         }
     }
 
-    @SuppressWarnings("unused")
     public static String toLegacyText(BaseComponent... components) {
         StringBuilder builder = new StringBuilder();
         for (BaseComponent msg : components) {
@@ -100,7 +99,6 @@ public abstract class BaseComponent {
         return builder.toString();
     }
 
-    @SuppressWarnings("unused")
     public static String toPlainText(BaseComponent... components) {
         StringBuilder builder = new StringBuilder();
         for (BaseComponent msg : components) {
@@ -185,7 +183,6 @@ public abstract class BaseComponent {
         this.extra = components;
     }
 
-    @SuppressWarnings("unused")
     public void addExtra(String text) {
         addExtra(new TextComponent(text));
     }

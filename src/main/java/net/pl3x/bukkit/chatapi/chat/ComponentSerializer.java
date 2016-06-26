@@ -7,13 +7,13 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import java.lang.reflect.Type;
-import java.util.HashSet;
 import net.pl3x.bukkit.chatapi.api.BaseComponent;
 import net.pl3x.bukkit.chatapi.api.TextComponent;
 import net.pl3x.bukkit.chatapi.api.TranslatableComponent;
 
-@SuppressWarnings("WeakerAccess")
+import java.lang.reflect.Type;
+import java.util.HashSet;
+
 public class ComponentSerializer implements JsonDeserializer<BaseComponent> {
 
     private final static Gson gson = new GsonBuilder().
@@ -24,7 +24,6 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent> {
 
     public final static ThreadLocal<HashSet<BaseComponent>> serializedComponents = new ThreadLocal<>();
 
-    @SuppressWarnings("unused")
     public static BaseComponent[] parse(String json) {
         if (json.startsWith("[")) { //Array
             return gson.fromJson(json, BaseComponent[].class);
@@ -35,12 +34,10 @@ public class ComponentSerializer implements JsonDeserializer<BaseComponent> {
                 };
     }
 
-    @SuppressWarnings("unused")
     public static String toString(BaseComponent component) {
         return gson.toJson(component);
     }
 
-    @SuppressWarnings("unused")
     public static String toString(BaseComponent... components) {
         return gson.toJson(new TextComponent(components));
     }

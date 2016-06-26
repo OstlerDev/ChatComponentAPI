@@ -24,7 +24,6 @@ public final class ClickEvent {
         return this.value;
     }
 
-    @SuppressWarnings("unused")
     public enum Action {
         OPEN_URL, OPEN_FILE, RUN_COMMAND, SUGGEST_COMMAND, CHANGE_PAGE
     }

@@ -25,7 +25,6 @@ public final class HoverEvent {
         return this.value;
     }
 
-    @SuppressWarnings("unused")
     public enum Action {
         SHOW_TEXT, SHOW_ACHIEVEMENT, SHOW_ITEM, SHOW_ENTITY
     }

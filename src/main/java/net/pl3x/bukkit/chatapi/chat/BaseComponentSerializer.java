@@ -5,14 +5,14 @@ import com.google.common.base.Preconditions;
 import com.google.gson.JsonDeserializationContext;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSerializationContext;
-import java.util.Arrays;
-import java.util.HashSet;
 import net.pl3x.bukkit.chatapi.ChatColor;
 import net.pl3x.bukkit.chatapi.api.BaseComponent;
 import net.pl3x.bukkit.chatapi.api.ClickEvent;
 import net.pl3x.bukkit.chatapi.api.HoverEvent;
 
-@SuppressWarnings("WeakerAccess")
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class BaseComponentSerializer {
 
     protected void deserialize(JsonObject object, BaseComponent component, JsonDeserializationContext context) {
