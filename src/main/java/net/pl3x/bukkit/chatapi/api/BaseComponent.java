@@ -1,7 +1,14 @@
 package net.pl3x.bukkit.chatapi.api;
 
 import net.pl3x.bukkit.chatapi.ChatColor;
+import net.pl3x.bukkit.chatapi.ChatMessageType;
+import net.pl3x.bukkit.chatapi.chat.ComponentSerializer;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Player;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -105,6 +112,42 @@ public abstract class BaseComponent {
             builder.append(msg.toPlainText());
         }
         return builder.toString();
+    }
+
+    public static void sendMessage(Player player, BaseComponent component) {
+        sendMessage(player, ChatMessageType.CHAT, new BaseComponent[]{component});
+    }
+
+    public static void sendMessage(Player player, BaseComponent... components) {
+        sendMessage(player, ChatMessageType.CHAT, components);
+    }
+
+    public static void sendMessage(Player player, ChatMessageType position, BaseComponent component) {
+        sendMessage(player, position, new BaseComponent[]{component});
+    }
+
+    public static void sendMessage(Player player, ChatMessageType position, BaseComponent... components) {
+        if (player == null) {
+            return;
+        }
+        try {
+            String version = Bukkit.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
+            Object nmsPlayer = player.getClass().getMethod("getHandle").invoke(player);
+            Object connection = nmsPlayer.getClass().getField("playerConnection").get(nmsPlayer);
+            Class<?> chatSerializer = Class.forName("net.minecraft.server." + version + ".IChatBaseComponent$ChatSerializer");
+            Class<?> chatComponent = Class.forName("net.minecraft.server." + version + ".IChatBaseComponent");
+            Class<?> packet = Class.forName("net.minecraft.server." + version + ".PacketPlayOutChat");
+            Constructor constructor = packet.getConstructor(chatComponent, byte.class);
+
+            Object text = chatSerializer.getMethod("a", String.class).invoke(chatSerializer, ComponentSerializer.toString(components));
+            Object packetFinal = constructor.newInstance(text, (byte) position.ordinal());
+
+            Field field = packetFinal.getClass().getDeclaredField("a");
+            field.setAccessible(true);
+            field.set(packetFinal, text);
+            connection.getClass().getMethod("sendPacket", Class.forName("net.minecraft.server." + version + ".Packet")).invoke(connection, packetFinal);
+        } catch (InstantiationException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | IllegalAccessException | ClassNotFoundException ignore) {
+        }
     }
 
     public ChatColor getColor() {
