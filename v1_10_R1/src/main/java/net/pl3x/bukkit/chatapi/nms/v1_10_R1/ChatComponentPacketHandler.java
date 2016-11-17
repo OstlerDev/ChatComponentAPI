@@ -1,4 +1,4 @@
-package net.pl3x.bukkit.chatapi.nms.v1_11_R1;
+package net.pl3x.bukkit.chatapi.nms.v1_10_R1;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
