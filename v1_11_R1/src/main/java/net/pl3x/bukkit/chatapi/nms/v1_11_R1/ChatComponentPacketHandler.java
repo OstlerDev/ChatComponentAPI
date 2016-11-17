@@ -1,12 +1,12 @@
-package net.pl3x.bukkit.chatapi.nms.v1_10_R1;
+package net.pl3x.bukkit.chatapi.nms.v1_11_R1;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.chat.ComponentSerializer;
-import net.minecraft.server.v1_10_R1.IChatBaseComponent;
-import net.minecraft.server.v1_10_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_11_R1.IChatBaseComponent;
+import net.minecraft.server.v1_11_R1.PacketPlayOutChat;
 import net.pl3x.bukkit.chatapi.api.ChatComponentPacket;
-import org.bukkit.craftbukkit.v1_10_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_11_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class ChatComponentPacketHandler implements ChatComponentPacket {
