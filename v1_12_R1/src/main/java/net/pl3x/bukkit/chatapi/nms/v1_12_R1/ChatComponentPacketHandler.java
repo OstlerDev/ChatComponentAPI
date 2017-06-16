@@ -1,4 +1,4 @@
-package net.pl3x.bukkit.chatapi.nms.v1_11_R1;
+package net.pl3x.bukkit.chatapi.nms.v1_12_R1;
 
 import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.BaseComponent;
@@ -15,7 +15,6 @@ public class ChatComponentPacketHandler implements ChatComponentPacket {
             return;
         }
         IChatBaseComponent component = IChatBaseComponent.ChatSerializer.a(ComponentSerializer.toString(components));
-
         PacketPlayOutChat packet = new PacketPlayOutChat(component, net.minecraft.server.v1_12_R1.ChatMessageType.a((byte) position.ordinal()));
         ((CraftPlayer) player).getHandle().playerConnection.sendPacket(packet);
     }
