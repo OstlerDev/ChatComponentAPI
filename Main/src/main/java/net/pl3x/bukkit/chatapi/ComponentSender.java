@@ -42,9 +42,11 @@ public class ComponentSender {
                 return (ChatComponentPacket) clazz.getConstructor().newInstance();
             }
         } catch (Exception ignore) {
+            Bukkit.getLogger().info("[ERROR] This plugin is not compatible with this server version (" + version + ").");
+            Bukkit.getLogger().info("[ERROR] Could not send chat packet!");
+            ignore.printStackTrace();
         }
-        Bukkit.getLogger().info("[ERROR] This plugin is not compatible with this server version (" + version + ").");
-        Bukkit.getLogger().info("[ERROR] Could not send chat packet!");
+
         return null;
     }
 }
