@@ -1,3 +1,5 @@
+[![](https://jitpack.io/v/OstlerDev/ChatComponentAPI.svg)](https://jitpack.io/#OstlerDev/ChatComponentAPI)
+
 # ChatComponentAPI
 
 A cross-version ChatComponent API for Bukkit/Spigot servers that provides seamless compatibility across multiple Minecraft versions.
@@ -47,7 +49,7 @@ Then add the dependency:
 <dependency>
     <groupId>com.github.OstlerDev</groupId>
     <artifactId>ChatComponentAPI</artifactId>
-    <version>1.12.0</version>
+    <version>v1.12.1</version>
 </dependency>
 ```
 
