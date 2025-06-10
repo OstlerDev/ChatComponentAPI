@@ -6,7 +6,6 @@ A cross-version ChatComponent API for Bukkit/Spigot servers that provides seamle
 
 - **Original Repository**: [bitbucket.org/BillyGalbreath/chatcomponentapi](https://bitbucket.org/BillyGalbreath/chatcomponentapi/src/master/)
 - **Original Author**: BillyGalbreath
-- **Original Maintainer**: Blake Galbreath (Blake.Galbreath@GMail.com)
 
 ## 📋 Overview
 
