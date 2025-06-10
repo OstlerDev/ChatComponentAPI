@@ -26,11 +26,21 @@ jobs:
         key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-m2
     
+    - name: Cache Spigot Maven Repository
+      uses: actions/cache@v3
+      with:
+        path: SpigotMavenRepo
+        key: spigot-maven-repo-${{ hashFiles('buildMaven.sh') }}
+        restore-keys: spigot-maven-repo-
+    
     - name: Make buildMaven.sh executable
       run: chmod +x buildMaven.sh
         
     - name: Set up Spigot Maven Repository
-      run: ./buildMaven.sh
+      run: |
+        if [ ! -d "SpigotMavenRepo/maven" ]; then
+          ./buildMaven.sh
+        fi
         
     - name: Build with Maven
-      run: mvn clean compile -Dmaven.repo.local=SpigotMavenRepo/maven 
+      run: mvn clean compile

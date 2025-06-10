@@ -55,22 +55,42 @@ Then add the dependency:
 
 ## 🔧 Usage
 
+The API provides a simple way to send chat components with rich formatting, hover events, and click events:
+
 ```java
-import net.pl3x.bukkit.chatapi.api.ChatComponentPacket;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.ComponentBuilder;
-import org.bukkit.entity.Player;
+import net.md_5.bungee.api.chat.BaseComponent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 
-// Get the API instance (implementation details vary by version)
-ChatComponentPacket api = // ... get instance
+import net.pl3x.bukkit.chatapi.ComponentSender;
 
-// Send a message to chat
-api.sendMessage(player, ChatMessageType.CHAT, 
-    new ComponentBuilder("Hello, World!").create());
+public class PlayerListener implements Listener {
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        TextComponent text = new TextComponent("Welcome to the server!");
+        TextComponent hoverText = new TextComponent("Click me for more info :)");
+        HoverEvent hoverEvent = new HoverEvent(HoverEvent.Action.SHOW_TEXT, new BaseComponent[]{hoverText});
+        text.setHoverEvent(hoverEvent);
 
-// Send an action bar message
-api.sendMessage(player, ChatMessageType.ACTION_BAR,
-    new ComponentBuilder("Action bar message").create());
+        ComponentSender.sendMessage(event.getPlayer(), text);
+    }
+}
+```
+
+### Basic Usage
+
+```java
+// Simple text message
+ComponentSender.sendMessage(player, new TextComponent("Hello World!"));
+
+// Message with hover text
+TextComponent message = new TextComponent("Hover over me!");
+message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, 
+    new BaseComponent[]{new TextComponent("Secret message!")}));
+ComponentSender.sendMessage(player, message);
 ```
 
 ## 🏗️ Building
@@ -91,7 +111,6 @@ This project maintains the same license as the original repository.
 
 - **Original Repository**: [bitbucket.org/BillyGalbreath/chatcomponentapi](https://bitbucket.org/BillyGalbreath/chatcomponentapi/src/master/)
 - **Original Author**: BillyGalbreath
-- **Original Maintainer**: Blake Galbreath (Blake.Galbreath@GMail.com)
 
 This fork was created to preserve and maintain this valuable library for the Bukkit/Spigot community. All original commits, authors, and git history have been preserved. Special thanks to BillyGalbreath for creating and maintaining this excellent cross-version compatibility library.
 
