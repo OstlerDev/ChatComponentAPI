@@ -32,6 +32,10 @@
             <id>spigot-repo</id>
             <url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
         </repository>
+        <repository>
+            <id>local-m2-repo</id>
+            <url>file://${project.basedir}/../SpigotMavenRepo/maven/repository</url>
+        </repository>
     </repositories>
 
     <build>

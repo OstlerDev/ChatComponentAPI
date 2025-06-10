@@ -28,13 +28,30 @@ ChatComponentAPI is a library that allows Bukkit/Spigot plugin developers to sen
 
 ## 📦 Maven
 
+### Using JitPack (Recommended)
+
+Add the JitPack repository to your `pom.xml`:
+
+```xml
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+```
+
+Then add the dependency:
+
 ```xml
 <dependency>
-    <groupId>net.pl3x.bukkit.chatapi</groupId>
+    <groupId>com.github.OstlerDev</groupId>
     <artifactId>ChatComponentAPI</artifactId>
-    <version>1.2</version>
+    <version>1.12.0</version>
 </dependency>
 ```
+
+> **Note**: Latest releases are available at [GitHub Releases](https://github.com/OstlerDev/ChatComponentAPI/releases)
 
 ## 🔧 Usage
 
