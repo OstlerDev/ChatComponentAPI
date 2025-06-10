@@ -11,7 +11,11 @@ A cross-version ChatComponent API for Bukkit/Spigot servers that provides seamle
 
 ## 📋 Overview
 
-ChatComponentAPI is a library that allows Bukkit/Spigot plugin developers to send chat components (JSON-formatted messages) to players with consistent behavior across different Minecraft server versions. It provides a unified interface for sending messages to different chat positions (chat, action bar, etc.) without worrying about version-specific implementation details.
+ChatComponentAPI is a library that allows Bukkit/Spigot plugin developers to send rich chat components (JSON-formatted messages) to players with consistent behavior across different Minecraft server versions.
+
+Initial support for chat components with JSON formatting was [added in 1.7.2](https://minecraft.wiki/w/Java_Edition_13w37a#General), however there was not an easy way to send these chat components until `player.spigot().sendMessage(TextComponent)` was added 1.13. This leaves v1.7.2 -> 1.12.2 without support for this feature.
+
+This library aims to fill the gap for versions 1.8 -> 1.12.2, allowing plugins to seamlessly support older versions of the game while still maintaining their same exact same architecture!
 
 ## ✨ Features
 
@@ -84,7 +88,25 @@ public class PlayerListener implements Listener {
 
 ### Basic Usage
 
+
 ```java
+import net.pl3x.bukkit.chatapi.ComponentSender;
+
+// Simple text message
+TextComponent message = new TextComponent("Hello World!")
+
+// If we are under 1.13 then use ChatComponentAPI module to send the message 
+if (!MCVersion.atLeast("1.13")) {
+    ComponentSender.sendMessage(player, fancyMessage);
+    return; 
+}
+// We are at least 1.13, so we can use the normal method of sending messages
+player.spigot().sendMessage(fancyMessage);
+```
+
+```java
+import net.pl3x.bukkit.chatapi.ComponentSender;
+
 // Simple text message
 ComponentSender.sendMessage(player, new TextComponent("Hello World!"));
 
@@ -94,6 +116,9 @@ message.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
     new BaseComponent[]{new TextComponent("Secret message!")}));
 ComponentSender.sendMessage(player, message);
 ```
+
+
+**Note:** Some of these older versions don't love when you nest hover events within themselves (example: `hoverComponent.addExtra(otherComponentWithHover)`). New versions gracefully handle this, but for older versions just know you might run into issues.
 
 ## 🏗️ Building
 
